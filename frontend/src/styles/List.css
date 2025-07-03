@@ -1,0 +1,52 @@
+/* src/styles/List.css */
+
+.list-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.list-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.list-container button {
+  display: block;
+  margin: 0 auto 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.list-container button:hover {
+  background-color: #45a049;
+}
+
+.list-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-container li {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.list-container li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.list-container li a:hover {
+  background-color: #efefef;
+}
