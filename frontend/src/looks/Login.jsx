@@ -24,7 +24,7 @@ export default function Login() {
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      <h2>로그인</h2>
+      <h2>Login</h2>
       <div className="input-group">
         <input
           type="text"
