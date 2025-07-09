@@ -30,7 +30,7 @@ export default function Login() {
           type="text"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          placeholder="ID"
+          placeholder="아이디"
           required
         />
       </div>
