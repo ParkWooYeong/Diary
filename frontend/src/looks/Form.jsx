@@ -33,7 +33,7 @@ export default function Form() {
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-      <h2>{isEdit ? '일기 수정' : '새 일기 작성'}</h2>
+      <h2>{isEdit ? '수정' : '새 일기 작성'}</h2>
       <textarea
         value={content}
         onChange={e => setContent(e.target.value)}
