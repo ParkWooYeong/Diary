@@ -1,3 +1,7 @@
-from django.test import TestCase
+from rest_framework import serializers
+from .models import Note
 
-# Create your tests here.
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
+        fields = '__all__'
