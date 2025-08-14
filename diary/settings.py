@@ -150,5 +150,7 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = False  # 이건 보안상 False로 두는 게 좋아
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
