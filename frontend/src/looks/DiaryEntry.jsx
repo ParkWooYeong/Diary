@@ -78,7 +78,7 @@ export default function DiaryEntry() {
           onClick={() => navigate(-1)}
           className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-yellow-100 rounded"
         >
-          뒤로
+          Back
         </button>
 
         {/* 작성자 또는 슈퍼계정만 버튼 보임 */}
@@ -88,7 +88,7 @@ export default function DiaryEntry() {
               onClick={() => navigate(`/notes/${id}/edit`)}
               className="px-4 py-2 bg-yellow-900 hover:bg-yellow-800 text-yellow-100 rounded"
             >
-              수정
+              Edit
             </button>
             <button
               onClick={handleDelete}
