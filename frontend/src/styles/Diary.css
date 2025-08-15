@@ -145,3 +145,22 @@ body {
   justify-content: center;
   margin-top: 20px;
 }
+
+/* Glassmorphism 스타일 (유리판 블러 + 반투명) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1); /* 반투명 흰색 */
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(10px);    /* 블러 효과 */
+  -webkit-backdrop-filter: blur(10px); /* 사파리 대응 */
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
