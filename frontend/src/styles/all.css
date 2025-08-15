@@ -1,0 +1,203 @@
+/* =============================
+   📌 폰트 설정
+   ============================= */
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../assets/fonts/Maplestory Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'MyCustomFont', sans-serif;
+  background: url('/images/night-sky.jpg') no-repeat center center fixed !important;
+  background-size: cover !important;
+  color: #e2e2e2;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* 어두운 반투명 오버레이 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+/* =============================
+   📌 색상 변수
+   ============================= */
+:root {
+  --bg-900: #1a1a1a;
+  --bg-800: #222222;
+  --bd-700: #2a2a2a;
+  --tx-200: #e2e2e2;
+  --muted-400: #9ca3af;
+  --muted-300: #d1d5db;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+  --red-600: #dc2626;
+  --red-700: #b91c1c;
+  --violet: #a78bfa;
+}
+
+/* =============================
+   📌 네비게이션
+   ============================= */
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+
+  /* ✨ 유리판 블러 스타일 */
+  background: rgba(26, 26, 26, 0.4); /* 반투명 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.app-nav .spacer {
+  flex: 1;
+}
+.nav-link {
+  color: var(--violet);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.nav-link:hover {
+  background: var(--bg-800);
+}
+
+/* =============================
+   📌 버튼
+   ============================= */
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--tx-200);
+  background: var(--bg-800);
+  transition: background 0.2s, border-color 0.2s, filter 0.15s, transform 0.05s;
+}
+.btn:hover {
+  filter: brightness(1.05);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--indigo-600);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--indigo-700);
+}
+.btn-ghost {
+  background: var(--bg-800);
+  border-color: var(--bd-700);
+}
+.btn-ghost:hover {
+  filter: brightness(1.1);
+}
+.btn-danger {
+  background: var(--red-600);
+  color: #fff;
+}
+.btn-danger:hover {
+  background: var(--red-700);
+}
+
+/* 로그아웃 버튼 */
+.logout-btn {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.logout-btn:hover {
+  background-color: #ff4d4d;
+}
+
+/* =============================
+   📌 카드
+   ============================= */
+.card {
+  background: var(--bg-800);
+  border: 1px solid var(--bd-700);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* =============================
+   📌 스크롤바
+   ============================= */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Glassmorphism 스타일 (유리판 블러 + 반투명) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1); /* 반투명 흰색 */
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(10px);    /* 블러 효과 */
+  -webkit-backdrop-filter: blur(10px); /* 사파리 대응 */
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.app-nav .logout-btn {
+  color: var(--violet);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.app-nav .logout-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}

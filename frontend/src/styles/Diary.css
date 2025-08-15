@@ -1,50 +1,147 @@
-/* src/styles/Diary.css */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;600;700&display=swap');
-
+/* =========================
+   게시글 상세보기 스타일
+   ========================= */
 body {
-  font-family: 'Cormorant Garamond', serif;
-  background-color: #0a0a0a;
-  color: #d8d8d8;
-  overflow-x: hidden;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #1a1a1a;
+  color: #e2e2e2;
+  margin: 0;
+  padding: 0;
 }
 
-.title-font {
-  font-family: 'Cinzel', serif;
+/* 상자 스타일 - list 테마 맞춤 */
+.diary-entry-box {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 40px;
+  width: 80%;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s ease-in;
+  min-height: 720px;
 }
 
-.parchment {
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" …/></svg>');
-  background-size: cover;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-.parchment::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(210,179,146,0.4) 0%,
-      rgba(210,179,146,0)    10%,
-      rgba(210,179,146,0)    90%,
-      rgba(210,179,146,0.4)100%);
+.diary-entry-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
-.blood-drop {
-  position: absolute;
-  width: 20px; height: 30px;
-  background-color: rgba(160,0,0,0.6);
-  border-radius: 50% 50% 25% 25%;
-  transform: rotate(-15deg);
-  filter: drop-shadow(0 0 4px rgba(160,0,0,0.8));
+/* 제목 */
+.diary-entry-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.page-content { text-shadow: 1px 1px 0 rgba(0,0,0,0.2); }
-
-@keyframes flicker {
-  0%   { opacity: 0.9 }
-  20%  { opacity: 1.0 }
-  30%  { opacity: 0.8 }
-  45%  { opacity: 1.0 }
-  65%  { opacity: 0.9 }
-  100% { opacity: 1.0 }
+/* 날짜 */
+.diary-entry-date {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 20px;
 }
-.flame-flicker { animation: flicker 3s infinite alternate; }
+
+/* 내용 */
+.diary-entry-content {
+  text-align: left;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  white-space: pre-wrap;
+}
+
+/* 버튼 공통 스타일 */
+.button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s;
+}
+
+.button-back {
+  background-color: #444;
+  color: white;
+}
+
+.button-back:hover {
+  background-color: #666;
+}
+
+.button-edit {
+  background-color: #444;
+  color: white;
+}
+
+.button-edit:hover {
+  background-color: #666;
+}
+
+.button-delete {
+  background-color: #c0392b;
+  color: white;
+}
+
+.button-delete:hover {
+  background-color: #e74c3c;
+}
+
+/* 수정·삭제 버튼 오른쪽 하단 고정 */
+.action-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+/* 뒤로가기 버튼 아래 가운데 */
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--tx-200);
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.05s ease;
+}
+.icon-btn:hover {
+  color: var(--indigo-600);
+  background: rgba(255, 255, 255, 0.04);
+}
+.icon-btn:active {
+  transform: translateY(1px);
+}
+.icon-btn.danger:hover {
+  color: var(--red-600);
+}
+
+/* 액션 버튼 위치 */
+.action-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* 뒤로가기 버튼 중앙 */
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

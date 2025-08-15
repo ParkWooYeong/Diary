@@ -1,4 +1,4 @@
-// src/App.jsx
+import './styles/all.css';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 
@@ -7,7 +7,6 @@ export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 다른 탭/창에서 로그인/로그아웃해도 반영되도록
   useEffect(() => {
     const onStorage = () => setToken(localStorage.getItem('access_token'));
     window.addEventListener('storage', onStorage);
@@ -16,32 +15,34 @@ export default function App() {
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token'); // 쓰고 있다면 같이 제거
+    localStorage.removeItem('refresh_token');
     setToken(null);
     navigate('/login', { replace: true, state: { from: location.pathname } });
   }, [navigate, location.pathname]);
 
   return (
     <div>
-      <nav style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <Link to="/">Notes</Link>
+      <nav className="app-nav">
+        <Link className="nav-link" to="/">Title</Link>
 
         {token ? (
           <>
-            <Link to="/notes/new">New</Link>
-            <button onClick={handleLogout} style={{ marginLeft: 'auto' }}>
+            <Link className="nav-link" to="/notes/new">New</Link>
+            <div className="spacer" />
+            <button onClick={handleLogout} className="logout-btn">
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
+            <div className="spacer" />
+            <Link className="nav-link" to="/login">Login</Link>
+            <Link className="nav-link" to="/signup">Signup</Link>
           </>
         )}
       </nav>
 
-      <Outlet /> {/* 자식 라우트가 여기 렌더링됩니다 */}
+      <Outlet />
     </div>
   );
 }

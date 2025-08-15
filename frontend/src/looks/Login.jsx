@@ -1,7 +1,7 @@
 // src/looks/Login.jsx
 import React, { useState } from 'react';
-import { useNavigate }      from 'react-router-dom';
-import API                  from '../api';
+import { useNavigate } from 'react-router-dom';
+import API from '../api';
 import '../styles/Login.css';
 
 export default function Login() {
@@ -23,27 +23,31 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <h2>Login</h2>
-      <div className="input-group">
-        <input
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          placeholder="아이디"
-          required
-        />
-      </div>
-      <div className="input-group">
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          placeholder="비밀번호"
-          required
-        />
-      </div>
-      <button type="submit">로그인</button>
-    </form>
+    <div className="page-center">{/* 화면 중앙 배치 */}
+      <form onSubmit={handleSubmit} className="login-form glass-card">
+        <h2>Login</h2>
+        <div className="input-group">
+          <input
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            placeholder="아이디"
+            autoComplete="username"
+            required
+          />
+        </div>
+        <div className="input-group">
+          <input
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="비밀번호"
+            autoComplete="current-password"
+            required
+          />
+        </div>
+        <button type="submit">로그인</button>
+      </form>
+    </div>
   );
 }

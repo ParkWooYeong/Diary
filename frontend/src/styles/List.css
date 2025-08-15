@@ -1,52 +1,238 @@
 /* src/styles/List.css */
 
+/* 배경 & 기본 색 */
+:root {
+  --bg-900: #1a1a1a;
+  --bg-800: #222222;
+  --bd-700: #2a2a2a;
+  --tx-200: #e2e2e2;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+  --indigo-900: #312e81;
+  --indigo-300: #a5b4fc;
+}
+
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  color: var(--tx-200);
+  background: var(--bg-900);
+  /* HTML 버전의 레이더 무늬 + 천천히 움직이는 배경 */
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(40,40,40,0.3) 0%, transparent 20%),
+    radial-gradient(circle at 80% 80%, rgba(40,40,40,0.3) 0%, transparent 20%);
+  background-size: 100% 100%;
+  animation: fadeInBackground 10s ease infinite alternate;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+@keyframes fadeInBackground {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* 페이지 컨테이너 */
 .list-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
 }
 
+/* 타이틀 & 버튼 */
 .list-container h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+  margin: 0 0 16px;
+  font-size: 28px;
+  font-weight: 800;
 }
-
-.list-container button {
-  display: block;
-  margin: 0 auto 1.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #4caf50;
-  color: white;
+.list-container > button {
+  background: var(--indigo-600);
+  color: #fff;
+  padding: 8px 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  margin-bottom: 40px; /* 기존보다 여유있게 */
 }
 
-.list-container button:hover {
-  background-color: #45a049;
+
+/* 빈 상태 */
+.empty {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid var(--bd-700);
+  border-radius: 12px;
+  background: var(--bg-800);
+}
+.empty-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.empty-text {
+  color: #b8b8b8;
 }
 
+/* 목록 그리드 */
 .list-container ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 24px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 60px; /* ← 이 값이 카드 간격을 결정 */
 }
 
-.list-container li {
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+/* 카드 */
+.diary-entry {
+  background: var(--bg-800);
+  border: 1px solid var(--bd-700);
+  border-radius: 14px;
+  padding: 18px;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .2s ease;
+  animation: fadeIn .5s ease-in;
 }
-
-.list-container li a {
+.diary-entry:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,.5);
+  border-color: var(--indigo-600);
+  animation: pulse 2s infinite;
+}
+.diary-entry a {
+  color: inherit;
   text-decoration: none;
-  color: #333;
   display: block;
 }
 
-.list-container li a:hover {
-  background-color: #efefef;
+/* 카드 내부 */
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.entry-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+.entry-header span {
+  color: #9ca3af;
+  font-size: 12px;
+}
+.diary-entry p {
+  margin: 0;
+  color: #d1d5db;
+}
+
+/* 애니메이션 (HTML 버전 이식) */
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(100,100,255,0.1); }
+  70%  { box-shadow: 0 0 0 10px rgba(100,100,255,0.1); }
+  100% { box-shadow: 0 0 0 0 rgba(100,100,255,0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.entry-footer {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entry-actions { display: flex; gap: 8px; }
+
+.btn {
+  appearance: none;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform .05s ease, filter .15s ease, background .2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-edit { background: #4f46e5; color: #fff; }
+.btn-edit:hover { background: #4338ca; }
+
+.entry-footer {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform .05s ease, filter .15s ease, background .2s ease;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-edit {
+  background: #4f46e5;
+  color: #fff;
+}
+.btn-edit:hover {
+  background: #4338ca;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+.icon-btn{
+  background: transparent;
+  border: none;
+  color: var(--tx-200);
+  font-size: 18px;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color .2s ease, background .2s ease, transform .05s ease;
+}
+.icon-btn:hover{ color: var(--indigo-600); background: rgba(255,255,255,.04); }
+.icon-btn:active{ transform: translateY(1px); }
+.icon-btn.danger:hover{ color: var(--red-600); }
+
+/* 액션 영역 오른쪽 정렬(필요시) */
+.entry-footer{
+  display:flex; justify-content:flex-end; margin-top:8px;
+}
+.entry-actions{ display:flex; gap:6px; }
+
+/* Glassmorphism 스타일 (유리판 블러 + 반투명) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1); /* 반투명 흰색 */
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(10px);    /* 블러 효과 */
+  -webkit-backdrop-filter: blur(10px); /* 사파리 대응 */
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
