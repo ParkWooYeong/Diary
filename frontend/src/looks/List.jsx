@@ -26,31 +26,33 @@ export default function List() {
     }
   };
 
+  const sorted = [...notes].sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  );
+
   return (
     <div className="list-container">
       <h2>일기 목록</h2>
 
-      {/* 공용 버튼 테마 적용 */}
       <button className="btn btn-primary" onClick={() => navigate('/notes/new')}>
         New
       </button>
 
-      {notes.length === 0 ? (
+      {sorted.length === 0 ? (
         <div className="empty">
           <div className="empty-title">아직 작성한 일기가 없어요</div>
           <div className="empty-text">‘새 일기 쓰기’를 눌러 첫 글을 남겨보세요.</div>
         </div>
       ) : (
         <ul>
-          {notes.map(n => (
-            // 👉 유리판 효과 추가: glass-card (필요하면 hover-lift도 함께)
+          {sorted.map(n => (
             <li key={n.id} className="diary-entry glass-card">
               <Link to={`/notes/${n.id}`}>
                 <div className="entry-header">
                   <h3>{n.title || '(제목 없음)'}</h3>
                   <span>
-                    {n.updated_at
-                      ? new Date(n.updated_at).toLocaleDateString('ko-KR')
+                    {n.created_at
+                      ? new Date(n.created_at).toLocaleDateString('ko-KR')
                       : ''}
                   </span>
                 </div>
