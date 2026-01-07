@@ -39,3 +39,4 @@
 카드를 통해 일기의 제목, 감정 이모지, AI 생성 이미지, 그리고 AI의 답변 미리보기를 한눈에 확인할 수 있습니다.
 
 ---
+ <img width="1905" height="954" alt="스크린샷 2026-01-07 103828" src="https://github.com/user-attachments/assets/d6c2f2f4-972d-45d7-8b84-eeacdc451947" />
