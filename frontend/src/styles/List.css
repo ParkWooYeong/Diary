@@ -236,3 +236,48 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
+
+/* 1. 제목 옆 감정 이모지 */
+.sentiment-badge {
+  font-size: 1.2rem;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* 2. 카드 내 AI 이미지 (기존 카드 폭에 맞춤) */
+.entry-image-preview {
+  width: 100%;
+  height: 160px; /* 카드 높이에 맞춰 적절히 조절 */
+  margin: 12px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--bd-700);
+}
+
+.entry-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 비율에 맞게 꽉 차도록 */
+}
+
+/* 3. AI의 따뜻한 한마디 (반투명 강조 박스) */
+.ai-reply-mini {
+  background: rgba(79, 70, 229, 0.15); /* 기존 indigo-600 색상 활용 */
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--indigo-300);
+  border-left: 3px solid var(--indigo-600);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* 4. 본문 텍스트가 이미지를 가리지 않도록 2줄 제한 */
+.diary-entry p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}

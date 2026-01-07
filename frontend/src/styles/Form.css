@@ -73,3 +73,19 @@
 .form-container button:hover {
   background-color: var(--indigo-700);
 }
+
+button:disabled {
+  background: linear-gradient(90deg, #6e8efb, #a777e3);
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.loading-text {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

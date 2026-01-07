@@ -1,4 +1,3 @@
-// src/components/Form.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import API from '../api';
@@ -9,6 +8,7 @@ export default function Form() {
   const isEdit = Boolean(id);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(false); // AI 분석 로딩 상태 추가
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,43 +28,62 @@ export default function Form() {
       alert('제목과 내용을 모두 입력해주세요.');
       return;
     }
+
+    setLoading(true); // 로딩 시작 (AI 분석 및 이미지 생성 대기)
+
     try {
       if (isEdit) {
         await API.put(`/notes/${id}/`, { title, content });
       } else {
+        // 백엔드에서 제미나이가 분석을 마칠 때까지 여기서 기다립니다 (약 5~10초)
         await API.post('/notes/', { title, content });
       }
+      alert('AI가 오늘의 일기를 분석하고 그림을 그렸습니다! 목록에서 확인해보세요.');
       navigate('/');
     } catch (err) {
       alert(err.response?.data?.detail || err.response?.data || err.message);
+    } finally {
+      setLoading(false); // 로딩 종료
     }
   };
 
   return (
     <div className="page-center">
       <form onSubmit={handleSubmit} className="form-container glass-card">
-        <h2>{isEdit ? '수정' : '새 게시물 작성'}</h2>
+        <h2>{isEdit ? '일기 수정' : '오늘의 일기 쓰기'}</h2>
 
-        {/* 제목 */}
         <input
           type="text"
           value={title}
           onChange={e => setTitle(e.target.value)}
-          placeholder="제목을 입력하세요"
+          placeholder="오늘 하루를 한 단어로 표현한다면?"
           required
           autoComplete="off"
+          disabled={loading} // 로딩 중에는 입력 방지
         />
 
-        {/* 내용 */}
         <textarea
           value={content}
           onChange={e => setContent(e.target.value)}
           rows={12}
-          placeholder="내용을 입력하세요"
+          placeholder="오늘 어떤 일이 있었나요? AI에게 이야기를 들려주세요..."
           required
+          disabled={loading}
         />
 
-        <button type="submit">{isEdit ? '수정' : '작성'}</button>
+        <button type="submit" disabled={loading}>
+          {loading ? (
+            <span className="loading-text">✨ AI가 일기를 읽고 그림을 그리는 중...</span>
+          ) : (
+            isEdit ? '수정 완료' : '일기 저장 및 AI 분석'
+          )}
+        </button>
+        
+        {loading && (
+          <p className="ai-notice" style={{ color: '#fff', fontSize: '0.8rem', marginTop: '10px' }}>
+            ※ AI 분석 및 이미지 생성에는 약 10초 정도 소요될 수 있습니다.
+          </p>
+        )}
       </form>
     </div>
   );

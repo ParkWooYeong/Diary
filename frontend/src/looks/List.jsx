@@ -30,6 +30,16 @@ export default function List() {
     (a, b) => new Date(b.created_at) - new Date(a.created_at)
   );
 
+  const getEmoji = (sentiment) => {
+    const emojis = {
+      '행복': '😊',
+      '슬픔': '😢',
+      '화남': '🔥',
+      '평온': '🌿'
+    };
+    return emojis[sentiment] || '✨';
+  };
+
   return (
     <div className="list-container">
       <h2>일기 목록</h2>
@@ -47,41 +57,55 @@ export default function List() {
         <ul>
           {sorted.map(n => (
             <li key={n.id} className="diary-entry glass-card">
-              <Link to={`/notes/${n.id}`}>
+              <Link to={`/notes/${n.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                
+                {/* 1. 헤더 영역 (제목 + 감정 + 날짜) */}
                 <div className="entry-header">
-                  <h3>{n.title || '(제목 없음)'}</h3>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <h3>{n.title || '(제목 없음)'}</h3>
+                    {n.sentiment && (
+                      <span className="sentiment-badge" title={n.sentiment}>
+                        {getEmoji(n.sentiment)}
+                      </span>
+                    )}
+                  </div>
                   <span>
-                    {n.created_at
-                      ? new Date(n.created_at).toLocaleDateString('ko-KR')
-                      : ''}
+                    {n.created_at ? new Date(n.created_at).toLocaleDateString('ko-KR') : ''}
                   </span>
                 </div>
+
+                {/* 2. AI 이미지 미리보기 (본문 위로 배치하여 카드 폭 활용) */}
+                {n.image_url && (
+                  <div className="entry-image-preview">
+                    <img src={n.image_url} alt="AI Summary" />
+                  </div>
+                )}
+
+                {/* 3. 본문 내용 */}
                 <p>
                   {n.content?.substring(0, 100)}
                   {n.content?.length > 100 ? '...' : ''}
                 </p>
+
+                {/* 4. AI 답변 미리보기 */}
+                {n.ai_reply && (
+                  <div className="ai-reply-mini">
+                    <strong>✨ AI 위로:</strong> {n.ai_reply}
+                  </div>
+                )}
               </Link>
 
+              {/* 5. 하단 버튼 영역 */}
               <div className="entry-footer">
                 <div className="entry-actions">
-                  <button
-                    className="icon-btn"
-                    title="수정"
-                    aria-label="수정"
-                    onClick={(e) => {
+                  <button className="icon-btn" title="수정" onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       navigate(`/notes/${n.id}/edit`);
-                    }}
-                  >
+                    }}>
                     <FaEdit />
                   </button>
-                  <button
-                    className="icon-btn danger"
-                    title="삭제"
-                    aria-label="삭제"
-                    onClick={(e) => handleDelete(e, n.id)}
-                  >
+                  <button className="icon-btn danger" title="삭제" onClick={(e) => handleDelete(e, n.id)}>
                     <FaTrash />
                   </button>
                 </div>
