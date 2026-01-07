@@ -38,7 +38,6 @@ export default function Form() {
         // 백엔드에서 제미나이가 분석을 마칠 때까지 여기서 기다립니다 (약 5~10초)
         await API.post('/notes/', { title, content });
       }
-      alert('AI가 오늘의 일기를 분석하고 그림을 그렸습니다! 목록에서 확인해보세요.');
       navigate('/');
     } catch (err) {
       alert(err.response?.data?.detail || err.response?.data || err.message);
@@ -50,13 +49,13 @@ export default function Form() {
   return (
     <div className="page-center">
       <form onSubmit={handleSubmit} className="form-container glass-card">
-        <h2>{isEdit ? '일기 수정' : '오늘의 일기 쓰기'}</h2>
+        <h2>{isEdit ? '일기 수정' : '오늘의 일기'}</h2>
 
         <input
           type="text"
           value={title}
           onChange={e => setTitle(e.target.value)}
-          placeholder="오늘 하루를 한 단어로 표현한다면?"
+          placeholder="제목 제목"
           required
           autoComplete="off"
           disabled={loading} // 로딩 중에는 입력 방지
@@ -66,7 +65,7 @@ export default function Form() {
           value={content}
           onChange={e => setContent(e.target.value)}
           rows={12}
-          placeholder="오늘 어떤 일이 있었나요? AI에게 이야기를 들려주세요..."
+          placeholder="오늘의 내용"
           required
           disabled={loading}
         />
@@ -75,7 +74,7 @@ export default function Form() {
           {loading ? (
             <span className="loading-text">✨ AI가 일기를 읽고 그림을 그리는 중...</span>
           ) : (
-            isEdit ? '수정 완료' : '일기 저장 및 AI 분석'
+            isEdit ? '수정' : '일기 저장'
           )}
         </button>
         

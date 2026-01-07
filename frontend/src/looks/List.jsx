@@ -90,7 +90,7 @@ export default function List() {
                 {/* 4. AI 답변 미리보기 */}
                 {n.ai_reply && (
                   <div className="ai-reply-mini">
-                    <strong>✨ AI 위로:</strong> {n.ai_reply}
+                    <strong>✨ AI :</strong> {n.ai_reply}
                   </div>
                 )}
               </Link>
