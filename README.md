@@ -40,3 +40,5 @@
 
 ---
  <img width="1905" height="954" alt="스크린샷 2026-01-07 103828" src="https://github.com/user-attachments/assets/d6c2f2f4-972d-45d7-8b84-eeacdc451947" />
+ <img width="455" height="280" alt="스크린샷 2026-01-09 021034" src="https://github.com/user-attachments/assets/cc69caac-33a7-43de-8f95-a298478bfe61" />
+
