@@ -17,7 +17,7 @@
 
 ## ✨ Key Highlights
 
-* **🌈 Multi-Modal AI Analysis**: 일기 텍스트를 기반으로 **감정(Emoji)**, **이미지(Visual)**, **위로(Text)** 세 가지 결과를 동시에 도출합니다.
+* **🌈 Multi-Modal AI Analysis**: 일기 텍스트를 기반으로 **감정(Emoji)**, **위로(Text)** 세 가지 결과를 동시에 도출합니다.
 * **💎 Glassmorphism Design**: 밤하늘 테마의 깊이감 있는 투명 카드 레이아웃을 구현했습니다.
 
 ---
